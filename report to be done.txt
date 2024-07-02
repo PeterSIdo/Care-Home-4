@@ -1,9 +1,0 @@
-I need code that promts user to 
-
-1. enter resident_initilas
-2. enter unit_name generated from care1.db / residents
-(this snippet can re-use routes /select_unit, /select_resident
-
-3. promt user to enter service from service_list
-4. report_logic (similiar to data_collecton_logic):
-if service_name == fluid_intake then render report_slected_data.html

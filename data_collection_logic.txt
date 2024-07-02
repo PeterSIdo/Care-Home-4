@@ -1,7 +1,0 @@
-in the module \carer_input
-the user selected resident-initials and service_name.
-Next step in the flow of the code should be:
-1. under the data_collection Blueprint create '\data_collection_logic'
-2  the function of 'data_collection_logic': offer choice, if user selects 'fluid intake' service, then the code redirects
-to '\fluid_intake', if 'food intake' has been selected then redirets to '\food_intake' 
-3. 'fluid_intake' calls fluid_intake_form.html 

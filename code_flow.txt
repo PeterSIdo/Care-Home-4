@@ -1,9 +1,0 @@
-### Summary of the Flow 
- 
-1. **Application Startup**: The  run.py  script initializes the Flask app using  create_app  and starts the server. 
-2. **App Initialization**: The  create_app  function sets up the app, configures it, and registers blueprints. 
-3. **Login Blueprint**: The login blueprint is defined and includes routes and evaluation logic. 
-4. **Login Route**: The  /login  route handles form display and submission, validating credentials using  evaluate_login . 
-5. **Login Form**: The  LoginForm  class defines the structure and validation for the login form. 
-6. **Login Evaluation**: The  evaluate_login  function checks the provided credentials. 
-7. **Login Template**: The  login.html  template renders the login form.
