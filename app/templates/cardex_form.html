@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Cardex Form</h2>
+    <form method="POST" action="{{ url_for('data_collection.submit_cardex') }}" class="form-container">
+        <input type="hidden" name="unit_name" value="{{ request.args.get('unit_name') }}">
+        <input type="hidden" name="resident_initials" value="{{ request.args.get('resident_initials') }}">
+        <div class="form-group">
+            <label for="cardex_text">Cardex Text:</label>
+            <textarea id="cardex_text" name="cardex_text" required></textarea>
+            <button type="button" onclick="startRecognition()">Start Speech Recognition</button>
+            <button type="button" onclick="stopRecognition()">Stop Speech Recognition</button>
+        </div>
+        <div class="form-group">
+            <label for="input_time">Time of Input:</label>
+            <input type="time" id="input_time" name="input_time" required>
+        </div>
+        <div class="form-group">
+            <label for="staff_initials">Staff Initials:</label>
+            <input type="text" id="staff_initials" name="staff_initials" required>
+        </div>
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('input_time').value = `${hours}:${minutes}`;
+        });
+
+        let recognition;
+
+        function sendAudioData(audioBlob) {
+            const formData = new FormData();
+            formData.append('audio', audioBlob, 'recording.wav');
+
+            fetch('/process_audio', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('cardex_text').value = data.recognized_text;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
+        function startRecognition() {
+            recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.start();
+
+            recognition.onresult = (event) => {
+                const speechResult = event.results[0][0].transcript;
+                document.getElementById('cardex_text').value = speechResult;
+
+                const audioBlob = new Blob([speechResult], { type: 'audio/wav' });
+                sendAudioData(audioBlob);
+            };
+
+            recognition.onspeechend = () => {
+                recognition.stop();
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Speech recognition error detected: ' + event.error);
+            };
+        }
+
+        function stopRecognition() {
+            if (recognition) {
+                recognition.stop();
+            }
+        }
+    </script>
+{% endblock %}

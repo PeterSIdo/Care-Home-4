@@ -1,0 +1,49 @@
+<!-- c:/Users/Peter/Documents/Care-Home-4/app/templates/report_care_frequency.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Care Frequency Report</h3>
+    <h4> for {{ resident_initials }} from {{ start_date }} to {{ end_date }}</h4>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date/Time</th>
+                <th>Keep Moving</th>
+                <th>Mattress Appropriate</th>
+                <th>Cushion Appropriate</th>
+                <th>Functionality Check</th>
+                <th>Pressure Areas Checked</th>
+                <th>Redness Present</th>
+                <th>Incontinence Urine</th>
+                <th>Incontinence Bowels</th>
+                <th>Diet Intake</th>
+                <th>Fluid Intake</th>
+                <th>Supplement Intake</th>
+                <th>Staff Initials</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[6] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[7] }}</td>
+                    <td>{{ row[8] }}</td>
+                    <td>{{ row[9] }}</td>
+                    <td>{{ row[10] }}</td>
+                    <td>{{ row[11] }}</td>
+                    <td>{{ row[12] }}</td>
+                    <td>{{ row[13] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('main.carer_menu', unit_name=unit_name, resident_initials=resident_initials) }}" class="btn-dark-green">Back to Menu</a>
+{% endblock %}

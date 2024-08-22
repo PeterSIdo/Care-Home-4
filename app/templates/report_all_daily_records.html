@@ -1,0 +1,172 @@
+<!-- c:/Users/Peter/Documents/Care-Home-4/app/templates/report_all_daily_records.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Daily Records for {{ resident_initials }}</h3>
+    <h4>from {{ start_date }} to {{ end_date }} </h4>
+    <hr>
+    <h3>Fluid Intake</h3>
+    <table class="table table-striped">
+        <thead class="bg-light">
+            <tr>
+                <th>Timestamp</th>
+                <th>Fluid Type</th>
+                <th>Volume (ml)</th>
+                <th>Note</th>
+                <th>Staff Initials</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in fluid_records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}</td>
+                    <td>{{ record[4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+    <h3>Food Intake</h3>
+    <table class="table table-striped">
+        <thead class="bg-light">
+            <tr>
+                <th>Timestamp</th>
+                <th>Food Type</th>
+                <th>Volume</th>
+                <th>Note</th>
+                <th>Staff Initials</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in food_records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}</td>
+                    <td>{{ record[4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+    <h3>Personal Care</h3>
+    <table class="table table-striped">
+        <thead class="bg-light">
+            <tr>
+                <th>Timestamp</th>
+                <th>Care Type</th>
+                <th>Duration (minutes)</th>
+                <th>Note</th>
+                <th>Staff Initials</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in personal_care_records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}</td>
+                    <td>{{ record[4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+    <h3>Cardex</h3>
+    <table class="table table-striped">
+        <thead class="bg-light">
+            <tr>
+                <th>Timestamp</th>
+                <th>Cardex Text</th>
+                <th>Staff Initials</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in cardex_records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+    <h3>Care Frequency</h3>
+    <table class="table table-striped">
+        <thead class="bg-light">
+            <tr>
+                <th>Timestamp</th>
+                <th>Keep Moving</th>
+                <th>Mattress Appropriate</th>
+                <th>Cushion Appropriate</th>
+                <th>Functionality Check</th>
+                <th>Pressure Areas Checked</th>
+                <th>Redness Present</th>
+                <th>Incontinence Urine</th>
+                <th>Incontinence Bowels</th>
+                <th>Diet Intake</th>
+                <th>Fluid Intake</th>
+                <th>Supplement Intake</th>
+                <th>Staff Initials</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in care_frequency_records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[6] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}</td>
+                    <td>{{ record[4] }}</td>
+                    <td>{{ record[5] }}</td>
+                    <td>{{ record[7] }}</td>
+                    <td>{{ record[8] }}</td>
+                    <td>{{ record[9] }}</td>
+                    <td>{{ record[10] }}</td>
+                    <td>{{ record[11] }}</td>
+                    <td>{{ record[12] }}</td>
+                    <td>{{ record[13] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+    <h3>Bowel Observation</h3>
+    <table class="table table-striped">
+        <thead class="bg-light">
+            <tr>
+                <th>Timestamp</th>
+                <th>Bowel Type</th>
+                <th>Bowel Size</th>
+                <th>Bowel Mode</th>
+                <th>Note</th>
+                <th>Staff Initials</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in bowel_records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}</td>
+                    <td>{{ record[4] }}</td>
+                    <td>{{ record[5] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

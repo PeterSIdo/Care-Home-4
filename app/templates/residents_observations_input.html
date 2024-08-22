@@ -1,0 +1,91 @@
+<!-- c:/Users/Peter/Documents/Care-Home-4/app/templates/residents_observations.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class = "center-text">Residents Observations Form</h2>
+    <form method="POST" action="{{ url_for('admin.residents_observations_input') }}" class="form-container">
+        <div class="form-group">
+            <label for="unit_name">Unit Name:</label>
+            <select id="unit_name" name="unit_name" required>
+                <option value="">Select Unit</option>
+                {% for unit in units %}
+                    <option value="{{ unit[0] }}">{{ unit[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="resident_initials">Resident Initials:</label>
+            <select id="resident_initials" name="resident_initials" required>
+                <option value="">Select Resident</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="observation_name">Observation Name:</label>
+            <select id="observation_name" name="observation_name" required>
+                <option value="">Select Observation</option>
+                {% for observation in observations %}
+                <option value="{{ observation[0] }}">{{ observation[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="start_date">Start Date:</label>
+            <input type="datetime-local" id="start_date" name="start_date" required>
+        </div>
+        <div class="form-group">
+            <label for="end_date">End Date:</label>
+            <input type="datetime-local" id="end_date" name="end_date" required>
+        </div>
+        <div class="form-group">
+            <label for="observation_reason">Observation Reason:</label>
+            <input type="text" id="observation_reason" name="observation_reason" required>
+        </div>
+        <div class="form-group">
+            <label for="observation_notes">Observation Notes:</label>
+            <textarea id="observation_notes" name="observation_notes"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="staff_initials">Staff Initials:</label>
+            <input type="text" id="staff_initials" name="staff_initials" required>
+        </div>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Set the default value of the start_date and end_date input fields to the current date and time
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}`;
+            document.getElementById('start_date').value = formattedDate;
+            document.getElementById('end_date').value = formattedDate;
+        });
+    </script>
+    <script>
+        function fetchResidents() {
+            const unitName = document.getElementById('unit_name').value;
+            const residentSelect = document.getElementById('resident_initials');
+            residentSelect.innerHTML = '<option value="">Select Resident</option>'; // Clear previous options
+    
+            if (unitName) {
+                fetch(`{{ url_for('main.get_residents') }}?unit_name=${unitName}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.residents.forEach(resident => {
+                            const option = document.createElement('option');
+                            option.value = resident;
+                            option.textContent = resident;
+                            residentSelect.appendChild(option);
+                        });
+                    });
+            }
+        }
+    
+        document.getElementById('unit_name').addEventListener('change', fetchResidents);
+    </script>
+{% endblock %}

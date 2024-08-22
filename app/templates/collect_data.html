@@ -13,7 +13,7 @@
         <form method="POST" action="{{ url_for('data_collection.data_collection_logic') }}">
             <input type="hidden" name="unit_name" value="{{ unit_name }}">
             <input type="hidden" name="resident_initials" value="{{ resident_initials }}">
-            <input type="hidden" name="first_name" value="{{ first_name }}">
+            <input type="hidden" name="resident_name" value="{{ resident_name }}">
             <input type="hidden" name="service_name" value="{{ service_name }}">
             <!-- Add other form fields as needed -->
             <button type="submit">Continue</button>

@@ -1,0 +1,46 @@
+<!-- c:/Users/Peter/Documents/Care-Home-4/app/templates/food_intake_form.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Food Intake Form</h2>
+    <form method="POST" action="{{ url_for('data_collection.submit_food_intake') }}" class="form-container">
+        <input type="hidden" name="unit_name" value="{{ request.args.get('unit_name') }}">
+        <input type="hidden" name="resident_initials" value="{{ request.args.get('resident_initials') }}">
+        <div class="form-group">
+            <label for="food_name">Food Name:</label> <!-- Updated label -->
+            <select id="food_name" name="food_name" required> <!-- Updated id and name -->
+                {% for food in food_list %}
+                    <option value="{{ food[1] }}">{{ food[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="food_volume">Food Amount:</label>
+            <input type="text" id="food_volume" name="food_volume" class="no-spinner" required placeholder="Enter '0' if refused">
+        </div>
+        <div class="form-group">
+            <label for="food_note">Note:</label>
+            <textarea id="food_note" name="food_note" placeholder="Refused"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="input_time">Time of Input:</label>
+            <input type="time" id="input_time" name="input_time" required>
+        </div>
+        <div class="form-group">
+            <label for="staff_initials">Staff Initials:</label>
+            <input type="text" id="staff_initials" name="staff_initials" required>
+        </div>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Set the default value of the time input field to the current time
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('input_time').value = `${hours}:${minutes}`;
+        });
+    </script>
+{% endblock %}

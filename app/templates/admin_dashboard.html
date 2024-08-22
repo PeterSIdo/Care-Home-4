@@ -1,0 +1,23 @@
+<!-- app/templates/admin_panel.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="center-text"> Admin Dashboard</h2>
+
+    <ul>
+        <li><a href="{{ url_for('admin.enter_resident') }}">Enter New Resident</a></li>
+        <li><a href="{{ url_for('admin.list_all_residents') }}">List All Resident</a></li>
+        <li><a href="{{ url_for('admin.residents_observations_input') }}">Observation Input</a></li>
+        <li><a href ="{{ url_for('admin.filter_and_resubmit_residents') }}">Filter Residents by Unit and Room</a></li>
+
+        <!-- 
+        
+        <li><a href="{{ url_for('main.enter_service_list') }}">Update Service List</a></li>
+
+        <li><a href="{{ url_for('main.enter_fluid_list') }}">Update Fluid List</a></li>
+        <li><a href="{{ url_for('main.enter_food_list') }}">Update Food List</a></li>
+        <li><a href="{{ url_for('main.enter_care_list') }}">Update Care List</a></li>
+        <li><a href="{{ url_for('main.enter_bowel_list') }}">Update Bowel List</a></li>
+        -->
+    </ul>
+{% endblock %}
