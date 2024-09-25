@@ -2,6 +2,25 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class="link-container">
+        <a href="{{ url_for('main.about_care_home') }}">About Care-Home</a>
+        <a href="{{ url_for('main.contact_us') }}">Contact Us</a>
+    </div>
+    <hr>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+
+
+
     <h2 class="center-text"> Login</h2>
     <form method="POST" action="{{ url_for('login.login') }}" class="form-container">
         {{ form.hidden_tag() }}
@@ -19,4 +38,16 @@
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
+    <div class="test-version-info">
+        <p>This is a test version.</p>
+        <p>To login use following credentials:</p>
+        <p>User Mode: <strong>Carer</strong></p>
+        <p>Username: <strong>c</strong></p>
+        <p>Password: <strong>c</strong></p>
+    </div>
+    
+        <!-- Footer -->
+        <hr>
+        <div class="footer">&copy; 2024 Care-Home. All rights reserved.</div>
+
 {% endblock %}

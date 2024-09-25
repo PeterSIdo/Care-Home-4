@@ -1,0 +1,19 @@
+<!-- c:/Users/Peter/Documents/Care-Home-4/app/templates/staff_dashboard.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-group">
+        <h2 class="center-text">Staff Dashboard</h2>
+        <div class="menu-list-container">
+            <ul class="menu-list">
+                <li><a href="{{ url_for('staff_board.residents_observations_chart') }}">Residents on Observation Chart</a></li>
+                <li>
+                    <a href="{{ url_for('staff_log.create_staff_log') }}">Enter New Staff Log</a>
+                    <li><a href="{{ url_for('staff_log.view_staff_log') }}">View & Edit Staff Log</a></li>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1 class="center-text">Report Selection</h1>
+    <h2 class="center-text">Report Selection</h2>
     <form method="POST" action="{{ url_for('reports.report_selection') }}" class="form-container">
         <div class="form-group">
             <label for="unit_name">Unit Name:</label>
@@ -20,13 +20,21 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="service_name">Select Service:</label>
+            <label for="service_name">Select Report:</label>
             <select id="service_name" name="service_name" required>
-                <option value="">Select Service</option>
+                <option value="">Select Report</option>
                 {% for service in services %}
                     <option value="{{ service[1] }}">{{ service[1] }}</option>
                 {% endfor %}
             </select>
+        </div>
+        <div class="form-group">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" value="{{current_date}}" required>
+        </div>
+        <div class="form-group">
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" value="{{current_date}}" required>
         </div>
         <button type="submit">Continue</button>
     </form>

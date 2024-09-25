@@ -7,8 +7,9 @@
         <h2 class="center-text">Carer Menu</h2>
         <div class="menu-list-container">
             <ul class="menu-list">
-                <li><a href="{{ url_for('main.carer_input') }}">Data Collection</a></li>
-                <li><a href="{{ url_for('reports.report_selection') }}">Reports</a></li>
+                <li><a href="{{ url_for('main.carer_input') }}" class="menu-item">Data Collection</a></li>
+                <li><a href="{{ url_for('reports.report_selection') }}" class="menu-item">Reports</a></li>
+                <li><a href="{{ url_for('staff_board.staff_dashboard') }}" class="menu-item">Staff Board</a></li>
             </ul>
         </div>
     </div>

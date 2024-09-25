@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="link-container">
+        <a href="{{ url_for('main.index') }}">Back to Care-Home</a>
+        <hr>
+    </div>
+
+    <div class="container">
+        <h3>Care-Home-4 Project Overview</h3>
+        
+        <p><strong>Care-Home-4</strong> is an innovative project designed to streamline and enhance the management of care home operations. Our goal is to create a comprehensive system to store and manage data, improving the quality of care provided to residents.</p>
+        <p>The project focuses on enhancing the quality of life for residents while also making the job easier for carers, home management, and residents' families. This program aims to boost efficiency and communication within the care home environment, ensuring a better experience for everyone involved.</p>
+
+
+        <h3>Key Features</h3>
+        <h4>Database Management:</h4>
+        <p>Currently utilizing SQLite for database management, with plans to switch to PostgreSQL in the next stage for enhanced performance and scalability.</p>
+
+        <h4>Modular Design:</h4>
+        <p>The project is designed to be modular, allowing for the easy addition of new features. Upcoming modules include:</p>
+        <ul>
+            <li><strong>Authorization:</strong> Ensuring secure access and data protection.</li>
+            <li><strong>Service Management:</strong> Comprehensive management of various services provided to residents.</li>
+            <li><strong>Fluid and Food Intake Tracking:</strong> Detailed tracking of residents' fluid and food intake.</li>
+            <li><strong>Personal Care Logging:</strong> Recording and managing personal care activities.</li>
+            <li><strong>Bowel Movement Tracking:</strong> Monitoring and logging residents' bowel movements.</li>
+            <li><strong>Cardex:</strong> Recording daily activities.</li>
+        </ul>
+
+        <h4>Access Levels:</h4>
+        <ul>
+            <li><strong>Staff:</strong> Carers, health professionals</li>
+            <li><strong>Home Management</strong></li>
+            <li><strong>Kitchen Staff:</strong> Access to food management</li>
+            <li><strong>Admin</strong></li>
+            <li><strong>Family Members:</strong> Optionally, family members may have access to certain features, allowing them to track the daily activities and well-being of their loved ones in real time.</li>
+        </ul>
+
+        <h3>Security Measures and Flexibility</h3>
+        <h4>Data Access and Storage Options:</h4>
+        <p>All data will be securely stored on trusted servers such as Google, Amazon, or Microsoft. There will also be options to download data into the company's private network or generate printouts in PDF or Excel formats. This ensures all stakeholders have flexible and secure access to the information they need.</p>
+
+        <h3>Current Status</h3>
+        <h4>Development Stage:</h4>
+        <p>The project is presentable, with core functionalities implemented and operational.</p>
+
+        <h3>Cloud Hosting:</h3>
+        <p>The application is hosted on <a href="https://care-home.replit.app">Care-Home-4</a>, ensuring accessibility and reliability.</p>
+
+        <h3>Regular Updates:</h3>
+        <p>The project is maintained and updated on GitHub, ensuring continuous improvement and feature additions.</p>
+
+        <h3>Future Plans</h3>
+        <h4>Database Migration:</h4>
+        <p>Transition from SQLite to PostgreSQL to support larger datasets and improve query performance.</p>
+
+        <h3>Enhanced Security:</h3>
+        <p>Implementation of advanced authorization mechanisms to protect sensitive data.</p>
+
+        <h3>User Interface Improvements:</h3>
+        <p>Ongoing enhancements to the user interface for better usability and accessibility.</p>
+
+        <h3>How to Access</h3>
+        <p>You can access the current version of the Care-Home-4 project at <a href="https://care-home.replit.app">Care-Home-4</a>.</p>
+
+        <h3>Conclusion</h3>
+        <p>Care-Home-4 is poised to make a significant difference in care home management with its comprehensive features and modular design.<br>We are excited to present this project to you and look forward to your feedback and support as we continue to develop and enhance its capabilities.</p>
+    </div>
+
+    <div class="link-container">
+        <hr>
+        <a href="{{ url_for('main.index') }}">Back to Care-Home</a>
+        
+    </div>
+
+{% endblock %}

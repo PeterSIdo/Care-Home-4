@@ -2,13 +2,13 @@
 from flask import Flask, session,render_template
 from config import Config
 from datetime import datetime
-from flask_bootstrap import Bootstrap5
+from flask_bootstrap import Bootstrap
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
     
-    Bootstrap5(app)  # Initialize Flask-Bootstrap
+    Bootstrap(app)  # Initialize Flask-Bootstrap
         
     @app.before_request
     def set_current_time():
@@ -28,5 +28,14 @@ def create_app(config_class=Config):
     
     from app.reports import bp as reports_bp
     app.register_blueprint(reports_bp)
+    
+    from app.admin import bp as admin_bp
+    app.register_blueprint(admin_bp)
+    
+    from app.staff_board import bp as staff_board_bp
+    app.register_blueprint(staff_board_bp, url_prefix='/staff_board')
+    
+    from app.staff_log import bp as staff_log_bp
+    app.register_blueprint(staff_log_bp, url_prefix='/staff_log')
 
     return app

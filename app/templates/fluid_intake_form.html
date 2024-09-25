@@ -16,12 +16,31 @@
         </div>
         <div class="form-group">
             <label for="fluid_volume">Fluid Volume (ml):</label>
-            <input type="number" id="fluid_volume" name="fluid_volume" class="no-spinner" required placeholder = "Enter '0' if refused">
+            <input type="number" id="fluid_volume" name="fluid_volume" class="no-spinner" required placeholder="Enter '0' if refused">
         </div>
         <div class="form-group">
             <label for="fluid_note">Note:</label>
             <textarea id="fluid_note" name="fluid_note" placeholder="Refused/Asleep"></textarea>
         </div>
+        <div class="form-group">
+            <label for="input_time">Time of Record:</label>
+            <input type="time" id="input_time" name="input_time" required>
+        </div>
+        <div class="form-group">
+            <label for="staff_initials">Staff Initials:</label>
+            <input type="text" id="staff_initials" name="staff_initials" required>
+        </div>
+        
         <button type="submit">Submit</button>
     </form>
+
+    <script>
+        // Set the default value of the time input field to the current time
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('input_time').value = `${hours}:${minutes}`;
+        });
+    </script>
 {% endblock %}

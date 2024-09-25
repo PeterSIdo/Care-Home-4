@@ -1,0 +1,30 @@
+<!-- c:/Users/Peter/Documents/Care-Home-4/app/templates/report_personal_care.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Personal Care Report </h2>
+    <h4> for {{ resident_initials }} </h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Personal Care Type</th>
+                <th>Note</th>
+                <th>Duration</th>
+                <th>Staff Initials</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in personal_care_records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}</td>
+                    <td>{{ record[4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('main.carer_menu', unit_name=unit_name, resident_initials=resident_initials) }}" class="btn-dark-green">Back to Menu</a>
+{% endblock %}

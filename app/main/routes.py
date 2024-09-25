@@ -4,6 +4,14 @@ from app.login.forms import LoginForm  # Import the LoginForm
 import sqlite3
 from app.login_check import login_required
 
+@bp.route('/about_care_home')
+def about_care_home():
+    return render_template('about_care_home.html')
+
+@bp.route('/contact_us')
+def contact_us():
+    return render_template('contact_us.html')
+
 @bp.route('/')
 def index():
     if 'logged_in' in session and session['logged_in']:
@@ -37,7 +45,7 @@ def carer_input():
         if request.method == 'POST':
             unit_name = request.form.get('unit_name')
             resident_initials = request.form.get('resident_initials')
-            first_name = request.form.get('first_name')
+            
             service_name = request.form.get('service_name')
             
             if not unit_name or not resident_initials or not service_name:
@@ -45,7 +53,7 @@ def carer_input():
                 return redirect(url_for('main.carer_input'))
             
             # Redirect to data_collection blueprint with selected service
-            return redirect(url_for('data_collection.collect_data', unit_name=unit_name, resident_initials=resident_initials, first_name=first_name, service_name=service_name))
+            return redirect(url_for('data_collection.collect_data', unit_name=unit_name, resident_initials=resident_initials, service_name=service_name))
         
         # Fetch service list and unit list from the database
         conn = sqlite3.connect('care4.db')
@@ -71,52 +79,7 @@ def get_residents():
 
 
 
-@bp.route('/enter_resident', methods=['GET', 'POST'])
-def enter_resident():
-    if 'logged_in' in session and session['logged_in'] and session.get('user_mode') == 'a':
-        if request.method == 'POST':
-            first_name = request.form.get('first_name')
-            surname = request.form.get('surname')
-            unit_name = request.form.get('unit_name')
-            room_nr = request.form.get('room_nr')
 
-            # Convert room_nr to an integer
-            try:
-                room_nr = int(room_nr)
-            except ValueError:
-                flash('Room number must be an integer.')
-                return redirect(url_for('main.enter_resident'))
-            
-            # Calculate resident initials
-            initials = first_name[0].upper() + surname[0].upper()
-            resident_initials = f"{unit_name}{room_nr:02d}{initials}"
-
-            # Connect to the database
-            conn = sqlite3.connect('care4.db')
-            cursor = conn.cursor()
-
-            # Create table if it does not exist
-            cursor.execute('''CREATE TABLE IF NOT EXISTS residents (
-                                id INTEGER PRIMARY KEY, 
-                                first_name TEXT, 
-                                surname TEXT, 
-                                unit_name TEXT, 
-                                room_nr INTEGER,
-                                resident_initials TEXT)''')
-
-            # Insert data into the table
-            cursor.execute('INSERT INTO residents (first_name, surname, unit_name, room_nr, resident_initials) VALUES (?, ?, ?, ?, ?)', 
-                           (first_name, surname, unit_name, room_nr, resident_initials))
-
-            # Commit changes and close connection
-            conn.commit()
-            conn.close()
-
-            flash('Resident added successfully!')
-            return redirect(url_for('main.enter_resident'))
-
-        return render_template('enter_resident.html')
-    return redirect(url_for('login.login'))
 
 
 
@@ -172,8 +135,8 @@ def enter_bowel_list():
 def manage_database():
     if request.method == 'POST':
         # Get form data
-        first_name = request.form.get('first_name')
-        surname = request.form.get('surname')
+        resident_name = request.form.get('resident_name')
+        resident_surname = request.form.get('resident_surname')
         unit_name = request.form.get('unit_name')
         room_nr = request.form.get('room_nr')
 
@@ -184,15 +147,15 @@ def manage_database():
         # Create table if it does not exist
         cursor.execute('''CREATE TABLE IF NOT EXISTS residents (
                             id INTEGER PRIMARY KEY, 
-                            first_name TEXT, 
-                            surname TEXT, 
+                            resident_name TEXT, 
+                            resident_surname TEXT, 
                             unit_name TEXT, 
                             room_nr INTEGER)''')
 
         # Insert data into the table
-        if first_name and surname:
-            cursor.execute('INSERT INTO residents (first_name, surname, unit_name, room_nr) VALUES (?, ?, ?, ?)', 
-                           (first_name, surname, unit_name, room_nr))
+        if resident_name and resident_surname:
+            cursor.execute('INSERT INTO residents (resident_name, resident_surname, unit_name, room_nr) VALUES (?, ?, ?, ?)', 
+                           (resident_name, resident_surname, unit_name, room_nr))
 
         # Commit changes and close connection
         conn.commit()

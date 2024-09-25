@@ -8,4 +8,4 @@ def evaluate_login(username, password):
     elif username == "c" and password == "c":
         return 'c'  # Carer
     else:
-        return None  # Invalid credentials
+        return False  # Invalid credentials

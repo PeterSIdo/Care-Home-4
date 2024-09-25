@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Staff Log</h2>
+
+    <style>
+        .form-row {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Adjust the gap between elements as needed */
+            margin-bottom: 15px; /* Space between rows */
+        }
+    
+        .form-row label {
+            margin-right: 5px; /* Space between label and input */
+        }
+
+        
+    </style>
+
+    <form method="get" action="{{ url_for('staff_log.view_staff_log') }}">
+        <div class="form-row">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date">
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date">
+        </div>
+        <div class="form-row">
+            <label for="task_completed">Task Status:</label>
+            <select id="task_completed" name="task_completed">
+                <option value="all">All</option>
+                <option value="completed">Completed</option>
+                <option value="not_completed">Not Completed</option>
+            </select>
+        </div>
+        <button type="submit">Filter</button>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Timestamp</th>
+                <th>Entry Category</th>
+                <th class="description-column">Description</th>
+                <th>Suggested Completion Time</th>
+                <th>Initiator</th>
+                <th>Completer</th>
+                <th>Task Completed</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+                <tr>
+                    <td>{{ log[0] }}</td>
+                    <td>{{ log[1] }}</td>
+                    <td>{{ log[2] }}</td>
+                    <td>{{ log[3] }}</td>
+                    <td>{{ log[4] }}</td>
+                    <td>{{ log[5] }}</td>
+                    <td>{{ log[6] }}</td>
+                    <td>{{ 'Yes' if log[7] else 'No' }}</td>
+                    <td><a href="{{ url_for('staff_log.update_staff_log', log_id=log[0]) }}">Edit</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
