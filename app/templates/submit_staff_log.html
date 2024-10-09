@@ -1,0 +1,23 @@
+from flask import request, redirect, url_for, flash
+
+@bp.route('/submit_staff_log', methods=['POST'])
+def submit_staff_log():
+    # Extract data from the form
+    entry_category = request.form['entry_category']
+    description = request.form['description']
+    suggested_completion_time = request.form['suggested_completion_time']
+    initiator = request.form['initiator']
+    completer = request.form.get('completer', '')
+
+    # Database insertion logic
+    conn = sqlite3.connect('care4.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO staff_log (id, timestamp, entry_category, description, suggested_completion_time, initiator, completer)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    ''', (str(uuid.uuid4()), datetime.now().strftime('%Y-%m-%d %H:%M:%S'), entry_category, description, suggested_completion_time, initiator, completer))
+    conn.commit()
+    conn.close()
+
+    flash('New staff log entry created successfully!', 'success')
+    return redirect(url_for('staff_log.view_staff_log'))

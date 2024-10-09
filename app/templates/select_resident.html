@@ -21,14 +21,14 @@
                 {% endfor %}
             </select>
         </div>
-        <input type="hidden" name="first_name" id="first_name">
+        <input type="hidden" name="resident_name" id="resident_name">
         <button type="submit">Submit</button>
     </form>
 
     <script>
         document.getElementById('resident_initials').addEventListener('change', function() {
             var selectedOption = this.options[this.selectedIndex];
-            document.getElementById('first_name').value = selectedOption.getAttribute('data-first-name');
+            document.getElementById('resident_name').value = selectedOption.getAttribute('data-first-name');
         });
     </script>
 {% endblock %}

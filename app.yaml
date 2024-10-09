@@ -1,0 +1,6 @@
+runtime: python311  # Use the correct runtime version for Python 3.11
+entrypoint: gunicorn -b :$PORT app.main:create_app()
+
+handlers:
+- url: /.*
+  script: auto

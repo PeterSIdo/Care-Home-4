@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Update Staff Log Entry</h2>
+    <style>
+        .form-group {
+            margin-bottom: 15px; /* Add some space between form groups */
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-group label {
+            margin-right: 10px; /* Space between label and checkbox */
+            font-size: 16px; /* Increase font size for better readability */
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px; /* Increase width of checkbox */
+            height: 20px; /* Increase height of checkbox */
+            margin: 0; /* Remove default margin */
+        }
+    </style>
+    <form method="POST">
+        <div class="form-group">
+            <label for="completer">Who completed the task:</label>
+            <input type="text" id="completer" name="completer" value="{{ log[6] }}" required>
+        </div>
+        <div class="form-group checkbox-group">
+            <label for="task_completed">If completed please check out:</label>
+            <input type="checkbox" id="task_completed" name="task_completed" {% if log[7] %}checked{% endif %}>
+        </div>
+        <button type="submit">Update</button>
+    </form>
+{% endblock %}

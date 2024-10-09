@@ -1,0 +1,25 @@
+-- database: c:\Users\Peter\Documents\Care-Home-4\care4.db
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+SELECT * FROM food_list
+ORDER BY `soup_name` ASC;
+INSERT INTO food_list (soup_name) VALUES
+('french onion with bread & butter'),
+('cream of potato & leek with bread & butter'),
+('minestrone with bread & butter'),
+('carrot & parsnip with bread & butter'),
+('vegetable noodle with bread & butter'),
+('cream of celery with bread & butter'),
+('lentil with bread & butter');
+
+INSERT INTO food_list (starter_name) VALUES
+('mackeral salad'),
+('onion rings with dip'),
+('melon & parma ham'),
+('mozzarella sticks with dip'),
+('creamy garlic mushrooms on toast'),
+('haggis bon bonns with a whiskey sauce'),
+('salmon mousse & oat cakes');
+
+DELETE from food_list

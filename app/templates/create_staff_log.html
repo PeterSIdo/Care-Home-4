@@ -1,0 +1,29 @@
+<!-- c:/Users/Peter/Documents/Care-Home-4/app/templates/create_staff_log.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Create New Staff Log</h2>
+    <form method="POST" action="{{ url_for('staff_log.submit_staff_log') }}" class="form-container">
+        <div class="form-group">
+            <label for="entry_category">Entry Category:</label>
+            <input type="text" id="entry_category" name="entry_category" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="suggested_completion_time">Suggested Completion Time:</label>
+            <input type="datetime-local" id="suggested_completion_time" name="suggested_completion_time" required>
+        </div>
+        <div class="form-group">
+            <label for="initiator">Initiator:</label>
+            <input type="text" id="initiator" name="initiator" required>
+        </div>
+        <div class="form-group">
+            <label for="completer">Completer:</label>
+            <input type="text" id="completer" name="completer">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

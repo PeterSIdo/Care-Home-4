@@ -1,0 +1,34 @@
+<!-- c:/Users/Peter/Documents/Care-Home-4/app/templates/residents_observations_chart.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="center-text">Residents on Observation</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Resident Initials</th>
+                <th>Unit Name</th>
+                <th>Observation Name</th>
+                <th>Start Date</th> <!-- Adjust width as needed -->
+                <th>End Date</th>   <!-- Adjust width as needed -->
+                <th>Observation Reason</th>
+                <th>Observation Notes</th>
+                <th>Staff Initials</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for observation in observations %}
+                <tr>
+                    <td>{{ observation[1] }}</td>
+                    <td>{{ observation[2] }}</td>
+                    <td>{{ observation[3] }}</td>
+                    <td>{{ observation[4] }}</td> <!-- Adjust width  -->
+                    <td>{{ observation[5] }}</td> <!-- Adjust width  -->
+                    <td>{{ observation[6] }}</td>
+                    <td>{{ observation[7] }}</td>
+                    <td>{{ observation[8] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

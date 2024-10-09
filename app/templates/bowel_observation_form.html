@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Bowel Observation Form</h2>
+    <form method="POST" action="{{ url_for('data_collection.submit_bowel_observation') }}" class="form-container">
+        <input type="hidden" name="unit_name" value="{{ request.args.get('unit_name') }}">
+        <input type="hidden" name="resident_initials" value="{{ request.args.get('resident_initials') }}">
+        <div class="form-group">
+            <label for="bowel_type">Bowel Type:</label>
+            <select id="bowel_type" name="bowel_type" required>
+                {% for bowel in bowel_list %}
+                    <option value="{{ bowel[1] }}">{{ bowel[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="bowel_size">Bowel Size:</label>
+            <select id="bowel_size" name="bowel_size" required>
+                {% for bowel in bowel_list %}
+                    <option value="{{ bowel[2] }}">{{ bowel[2] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="bowel_mode">Bowel Mode:</label>
+            <select id="bowel_mode" name="bowel_mode" required>
+                {% for bowel in bowel_list %}
+                    <option value="{{ bowel[3] }}">{{ bowel[3] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="bowel_note">Note:</label>
+            <textarea id="bowel_note" name="bowel_note" placeholder="Enter any notes"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="input_time">Time of Record:</label>
+            <input type="time" id="input_time" name="input_time" required>
+        </div>
+        <div class="form-group">
+            <label for="staff_initials">Staff Initials:</label>
+            <input type="text" id="staff_initials" name="staff_initials" required>
+        </div>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('input_time').value = `${hours}:${minutes}`;
+        });
+    </script>
+{% endblock %}

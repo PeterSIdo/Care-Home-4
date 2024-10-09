@@ -1,0 +1,159 @@
+<!-- c:/Users/Peter/Documents/Care-Home-4/app/templates/care_frequency_form.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Care Frequency Data Collection</h2>
+<h3>for {{resident_initials}} </h3>
+<form method="POST" action="{{ url_for('data_collection.submit_care_frequency') }}" class="form-container">
+
+    <input type="hidden" name="resident_initials" value="{{ request.args.get('resident_initials') }}">
+
+    <div class="form-group">
+        <label for="position"><strong>Position:</strong></label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="position_right" name="position" value="Right" onclick="singleSelect(this)">
+            <label for="position_right">Right</label>
+            <input type="checkbox" id="position_left" name="position" value="Left" onclick="singleSelect(this)">
+            <label for="position_left">Left</label>
+            <input type="checkbox" id="position_back" name="position" value="Back" onclick="singleSelect(this)">
+            <label for="position_back">Back</label>
+            <input type="checkbox" id="position_chair" name="position" value="Chair" onclick="singleSelect(this)">
+            <label for="position_chair">Chair</label>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="mattress_appropriate"><strong>Mattress Appropriate:</strong></label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="mattress_appropriate_yes" name="mattress_appropriate" value="yes" onclick="singleSelect(this)">
+            <label for="mattress_appropriate_yes">Yes</label>
+            <input type="checkbox" id="mattress_appropriate_no" name="mattress_appropriate" value="no" onclick="singleSelect(this)">
+            <label for="mattress_appropriate_no">No</label>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="cushion_appropriate"><strong>Cushion Appropriate:</strong></label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="cushion_appropriate_yes" name="cushion_appropriate" value="yes" onclick="singleSelect(this)">
+            <label for="cushion_appropriate_yes">Yes</label>
+            <input type="checkbox" id="cushion_appropriate_no" name="cushion_appropriate" value="no" onclick="singleSelect(this)">
+            <label for="cushion_appropriate_no">No</label>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="functionality_check"><strong>Functionality Check:</strong></label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="functionality_check_yes" name="functionality_check" value="yes" onclick="singleSelect(this)">
+            <label for="functionality_check_yes">Yes</label>
+            <input type="checkbox" id="functionality_check_no" name="functionality_check" value="no" onclick="singleSelect(this)">
+            <label for="functionality_check_no">No</label>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="pressure_areas_checked"><strong>Pressure Areas Checked:</strong></label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="pressure_areas_checked_yes" name="pressure_areas_checked" value="yes" onclick="singleSelect(this)">
+            <label for="pressure_areas_checked_yes">Yes</label>
+            <input type="checkbox" id="pressure_areas_checked_no" name="pressure_areas_checked" value="no" onclick="singleSelect(this)">
+            <label for="pressure_areas_checked_no">No</label>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="redness_present"><strong>Redness Present:</strong></label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="redness_present_yes" name="redness_present" value="yes" onclick="singleSelect(this)">
+            <label for="redness_present_yes">Yes</label>
+            <input type="checkbox" id="redness_present_no" name="redness_present" value="no" onclick="singleSelect(this)">
+            <label for="redness_present_no">No</label>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="incontinence_urine"><strong>Incontinence Urine:</strong></label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="incontinence_urine_yes" name="incontinence_urine" value="yes" onclick="singleSelect(this)">
+            <label for="incontinence_urine_yes">Yes</label>
+            <input type="checkbox" id="incontinence_urine_no" name="incontinence_urine" value="no" onclick="singleSelect(this)">
+            <label for="incontinence_urine_no">No</label>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="incontinence_bowels"><strong>Incontinence Bowels:</strong></label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="incontinence_bowels_yes" name="incontinence_bowels" value="yes" onclick="singleSelect(this)">
+            <label for="incontinence_bowels_yes">Yes</label>
+            <input type="checkbox" id="incontinence_bowels_no" name="incontinence_bowels" value="no" onclick="singleSelect(this)">
+            <label for="incontinence_bowels_no">No</label>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="diet_intake"><strong>Diet Intake:</strong></label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="diet_intake_yes" name="diet_intake" value="yes" onclick="singleSelect(this)">
+            <label for="diet_intake_yes">Yes</label>
+            <input type="checkbox" id="diet_intake_no" name="diet_intake" value="no" onclick="singleSelect(this)">
+            <label for="diet_intake_no">No</label>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="fluid_intake"><strong>Fluid Intake:</strong></label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="fluid_intake_yes" name="fluid_intake" value="yes" onclick="singleSelect(this)">
+            <label for="fluid_intake_yes">Yes</label>
+            <input type="checkbox" id="fluid_intake_no" name="fluid_intake" value="no" onclick="singleSelect(this)">
+            <label for="fluid_intake_no">No</label>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="supplement_intake"><strong>Supplement Intake:</strong></label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="supplement_intake_yes" name="supplement_intake" value="yes" onclick="singleSelect(this)">
+            <label for="supplement_intake_yes">Yes</label>
+            <input type="checkbox" id="supplement_intake_no" name="supplement_intake" value="no" onclick="singleSelect(this)">
+            <label for="supplement_intake_no">No</label>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="notes"><strong>Notes:</strong></label>
+        <input type="text" id="snotes" name="notes">
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="staff_initials"><strong>Staff Initials:</strong></label>
+        <input type="text" id="staff_initials" name="staff_initials" required>
+    </div>
+        
+    <button type="submit">Submit</button>
+</form>
+
+<style>
+    .checkbox-group {
+        display: flex;
+        align-items: left;
+    }
+    .checkbox-group input[type="checkbox"] {
+        margin-right: 3px;
+    }
+    .checkbox-group label {
+        margin-right: 10px;
+    }
+</style>
+
+<script>
+function singleSelect(checkbox) {
+    const checkboxes = document.getElementsByName(checkbox.name);
+    checkboxes.forEach((item) => {
+        if (item !== checkbox) item.checked = false;
+    });
+}
+</script>
+{% endblock %}

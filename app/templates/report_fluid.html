@@ -1,30 +1,33 @@
-<!-- c:/Users/Peter/Documents/Care-Home-4/app/templates/reports.html -->
+<!-- c:/Users/Peter/Documents/Care-Home-4/app/templates/report_fluid.html -->
 {% extends "base.html" %}
 
 {% block content %}
-    <h3>Report Fluid Intake</h3>
-    <table>
+<h2>Report Fluid</h2>
+<h4> for {{ resident_initials }} from {{ start_date }} to {{ end_date }}</h4>
+<hr>
+    <table class= "table table-striped">
         <thead>
             <tr>
-                <th>Resident</th>
+                <!--<th>Resident</th> -->
                 <th>Date/Time</th>
                 <th>Fluid</th>
-                <th>Volume(ml))</th>
+                <th>Volume (ml)</th>
                 <th>Note</th>
-                <!-- Add more columns as needed -->
+                <th>Staff Initials</th> <!-- New column header -->
             </tr>
         </thead>
         <tbody>
             {% for row in data %}
                 <tr>
+                    
                     <td>{{ row[1] }}</td>
                     <td>{{ row[2] }}</td>
                     <td>{{ row[3] }}</td>
                     <td>{{ row[4] }}</td>
-                    <td>{{ row[5] }}</td>
-                    <!-- Add more columns as needed -->
+                    <td>{{ row[5] }}</td> <!-- New data cell -->
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+    <a href="{{ url_for('main.carer_menu', unit_name=unit_name, resident_initials=resident_initials) }}" class="btn-dark-green">Back to Menu</a>
 {% endblock %}

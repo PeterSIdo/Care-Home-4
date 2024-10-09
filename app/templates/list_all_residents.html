@@ -1,0 +1,28 @@
+<!-- c:/Users/Peter/Documents/Care-Home-4/app/templates/list_all_residents.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>All Residents</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Initials</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Unit</th>
+                <th>Room Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resident in residents %}
+                <tr>
+                    <td>{{ resident[0] }}</td>
+                    <td>{{ resident[1] }}</td>
+                    <td>{{ resident[2] }}</td>
+                    <td>{{ resident[3] }}</td>
+                    <td>{{ resident[4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
